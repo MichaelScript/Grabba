@@ -3,16 +3,25 @@ Grabba is a python tool that allows you to copy files from a machine based on a 
 
 ```json
 {
-    /* Where we are copying to */
+```
+Where we are copying to
+```json
     "output":"/Volumes/usb/copied",
-    /* Directories we are grabbing stuff from */
+```
+Directories we are grabbing stuff from
+```json
     "search":["/Users/*/Desktop","/Users/*/Downloads"],
-    /* Only grabbing files that match these patterns */
+```
+Only grabbing files that match these patterns
+```json
     "include":[".*\\.docx$",".*\\.txt$",".*\\.pdf$"],
-    /* Ignoring files that match these patterns */
+```
+Ignoring files that match these patterns
+```json
     "exclude":["$(old|archive)","bitter*melon$"],
-    /* If the output directory or any of the sub-directories already exist should we prompt
-    to replace them?*/
+```
+If the output directory or any of the sub-directories already exist should we prompt to replace them?
+```json
     "prompt":false
 }
 ```
