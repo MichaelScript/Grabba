@@ -4,11 +4,11 @@ Grabba is a python tool that allows you to copy files from a machine based on a 
 ##Configuring Grabby
 Option Name | Type | Default Value | Description
 ------------ | ------------- | ------------ | ------------- 
-output | string | Current Directory | Where we are copying to 
-search | list | Current Directory | Directories we are grabbing stuff from 
-include | list | All | Only grabbing files that match these patterns 
-exclude | list | None | Ignoring files that match these patterns 
-prompt | boolean | False | Enables/Disables prompting replacing directories
+**output** | string | *Current Directory* | Where we are copying to 
+**search** | list | *Current Directory* | Directories we are grabbing stuff from 
+**include** | list | *All* | Only grabbing files that match these patterns 
+**exclude** | list | *None* | Ignoring files that match these patterns 
+**prompt** | boolean | *False* | Enables/Disables prompting replacing directories
 
 ####Example Configuration
 ```json
