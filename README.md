@@ -10,7 +10,7 @@ Option Name | Type | Default Value | Description
 **exclude** | list | *None* | Ignoring files that match these patterns 
 **prompt** | boolean | *False* | Enables/Disables prompting replacing directories
 
-####Example Configuration
+###Example Configuration
 ```json
 {
     "output":"/Volumes/usb/copied",
