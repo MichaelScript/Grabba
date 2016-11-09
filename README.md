@@ -6,8 +6,8 @@ Option Name | Type | Default Value | Description
 ------------ | ------------- | ------------ | ------------- 
 **output** | string | *Current Directory* | Where we are copying to 
 **search** | list | *Current Directory* | Directories we are grabbing stuff from 
-**include** | list | *All* | Only grabbing files that match these patterns 
-**exclude** | list | *None* | Ignoring files that match these patterns 
+**include** | list | *All* | Only grabbing files that match these regex patterns
+**exclude** | list | *None* | Ignoring files that match these regex patterns
 **prompt** | boolean | *False* | Enables/Disables prompting replacing directories
 
 ###Example Configuration
