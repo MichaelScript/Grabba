@@ -5,14 +5,14 @@ import shutil
 import sys
 import re
 
-parser = argparse.ArgumentParser(prog="grabba",description="Grabba is a python tool that allows you to grab files from a machine based on a simple filter system.")
+parser = argparse.ArgumentParser(prog="grabby",description="Grabby is a python tool that allows you to "",find, filter,and grab files from any machine.")
 def parse_cli():
-	parser.add_argument("--search","-s",nargs="*",help="Directories you want to search and grab files from.")
-	parser.add_argument("--include","-t",nargs="*",help="Only grab files that have filenames that match these patterns.")
-	parser.add_argument("--exclude","-e",nargs="*",help="Don't grab files that have names that match these patterns")
-	parser.add_argument("--config","-c",nargs="?",help="Alternative config file.")
-	parser.add_argument("--output","-o",nargs="?",help="Alternate output directory")
-	parser.add_argument("--prompt","-p",nargs="?",help="Prompt for overriding output directories.")
+	parser.add_argument("-s --search",nargs="*",help="Directories you want to search and grab files from.")
+	parser.add_argument("-t --include",nargs="*",help="Only grab files that have filenames that match these patterns.")
+	parser.add_argument("-e --exclude",nargs="*",help="Don't grab files that have names that match these patterns")
+	parser.add_argument("-c --config",nargs="?",help="Alternative config file.")
+	parser.add_argument("-o --output",nargs="?",help="Alternate output directory")
+	parser.add_argument("-p --prompt",nargs="?",help="Prompt for overriding output directories.")
 	args = parser.parse_args()
 	return args
 

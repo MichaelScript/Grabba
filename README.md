@@ -1,7 +1,7 @@
 #Grabby
 Grabba is a python tool that allows you to copy files from a machine based on a simple filter system. Grabby takes in a user configuration file that allows you to specify what directories you want to search, what file name patterns to exclude, and what file types you want to grab. It then copies files and directories that meet these filters into a user-specified output directory.
 
-```json
+```
 {
     /* Where we are copying to */
     "output":"/Volumes/usb/copied",
