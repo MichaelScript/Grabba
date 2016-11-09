@@ -2,5 +2,6 @@
 	"output":"output",
 	"search":["/Users/"],
 	"types":[".docx",".txt",".pdf"],
-	"exclude":["*spotlight*","$some"]
+	"exclude":["spotlight","some"],
+    "prompt":false
 }

@@ -3,6 +3,7 @@ import argparse
 import json
 import shutil
 import sys
+import re
 
 parser = argparse.ArgumentParser(prog="grabba",description="Grabba is a python tool that allows you to grab files from a machine based on a simple filter system.")
 def parse_cli():
@@ -11,6 +12,7 @@ def parse_cli():
 	parser.add_argument("--exclude","-e",nargs="*",help="Don't grab files that have names that contain these patterns in their names.")
 	parser.add_argument("--config","-c",nargs="?",help="Alternative config file.")
 	parser.add_argument("--output","-o",nargs="?",help="Alternate output directory")
+	parser.add_argument("--prompt","-p",nargs="?",help="Prompt for overriding output directories.")
 	args = parser.parse_args()
 	return args
 
@@ -34,24 +36,29 @@ config.update(filter(lambda k: options[k] is not None,options))
 test_dir = os.path.abspath(os.path.join(os.path.realpath(__file__),os.pardir,os.pardir,'tests'))
 input_dirs = [os.path.join(test_dir,"input")]
 output_dir = os.path.join(test_dir,"output")
-# copytree won't copy to an output directory that already exists.
 
-def check_file_generator(inc_patterns,exc_patterns):
-	# Need to check if it matches any of the inc patterns
-	def check_file(directory,file_names):
-		return map(lambda file_name: file_name.endswith(tuple(inc_patterns)),file_names)
+valid_types = tuple(config["types"])
+exclude_patterns = "|".join(map(lambda exc: "(" + exc + ")",config["exclude"]))
+# We filter files with copytree by returning a list of all the "invalid files" in other words
+# all of the files that aren't of the correct type or contain any of our exclusion paterns
+def check_file(directory,file_names):
+	invalid_files = filter(lambda file_name: not os.path.isdir(os.path.join(directory,file_name)) and (re.search(exclude_patterns,file_name) or not file_name.endswith(valid_types)),file_names)
+	return invalid_files
+
+prompt = config["prompt"]
 
 for directory in input_dirs:
 	# We create a new directory within our output directory based on the name of the directory we are copying from.
 	output_subdir = os.path.join(output_dir,os.path.relpath(directory,os.pardir).replace("/","__"))
 	if os.path.exists(output_subdir):
-		print("The output sub-directory (" + output_subdir + ") already exists would you like to delete this?")
-		if raw_input() not in ["true","yes","y"]:
-			print("Skipping...")
-			continue
+		if prompt:
+			print("The output sub-directory (" + output_subdir + ") already exists would you like to delete this?")
+			if raw_input() not in ["true","yes","y"]:
+				print("Skipping...")
+				continue
 		shutil.rmtree(output_subdir)
 
-	shutil.copytree(directory, output_subdir, ignore=shutil.ignore_patterns(*config["exclude"]))
+	shutil.copytree(directory, output_subdir, ignore=check_file)
 
 
 
