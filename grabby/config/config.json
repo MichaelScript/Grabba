@@ -1,7 +1,7 @@
 {
 	"output":"output",
 	"search":["/Users/"],
-	"types":[".docx",".txt",".pdf"],
+	"include":[".*\\.docx$",".*\\.txt$",".*\\.pdf$"],
 	"exclude":["spotlight","some"],
     "prompt":false
 }

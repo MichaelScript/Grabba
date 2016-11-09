@@ -8,8 +8,8 @@ import re
 parser = argparse.ArgumentParser(prog="grabba",description="Grabba is a python tool that allows you to grab files from a machine based on a simple filter system.")
 def parse_cli():
 	parser.add_argument("--search","-s",nargs="*",help="Directories you want to search and grab files from.")
-	parser.add_argument("--types","-t",nargs="*",help="File types you want to grab.")
-	parser.add_argument("--exclude","-e",nargs="*",help="Don't grab files that have names that contain these patterns in their names.")
+	parser.add_argument("--include","-t",nargs="*",help="Only grab files that have filenames that match these patterns.")
+	parser.add_argument("--exclude","-e",nargs="*",help="Don't grab files that have names that match these patterns")
 	parser.add_argument("--config","-c",nargs="?",help="Alternative config file.")
 	parser.add_argument("--output","-o",nargs="?",help="Alternate output directory")
 	parser.add_argument("--prompt","-p",nargs="?",help="Prompt for overriding output directories.")
@@ -37,13 +37,15 @@ test_dir = os.path.abspath(os.path.join(os.path.realpath(__file__),os.pardir,os.
 input_dirs = [os.path.join(test_dir,"input")]
 output_dir = os.path.join(test_dir,"output")
 
-valid_types = tuple(config["types"])
+include_patterns = "|".join(map(lambda exc: "(" + exc + ")",config["include"]))
 exclude_patterns = "|".join(map(lambda exc: "(" + exc + ")",config["exclude"]))
 # We filter files with copytree by returning a list of all the "invalid files" in other words
-# all of the files that aren't of the correct type or contain any of our exclusion paterns
+# we basically need to invert all of our inclusion and exclusion patterns 
 def check_file(directory,file_names):
-	invalid_files = filter(lambda file_name: not os.path.isdir(os.path.join(directory,file_name)) and (re.search(exclude_patterns,file_name) or not file_name.endswith(valid_types)),file_names)
-	return invalid_files
+	# Ugliness.
+	return filter(lambda file_name: not os.path.isdir(os.path.join(directory,file_name)) and\
+	 (re.search(exclude_patterns,file_name) or not re.search(include_patterns,file_name)),\
+	 file_names)
 
 prompt = config["prompt"]
 
