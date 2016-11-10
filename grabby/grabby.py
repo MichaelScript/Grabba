@@ -5,7 +5,7 @@ import shutil
 import sys
 import re
 
-parser = argparse.ArgumentParser(prog="grabby",description="Grabby is a python tool that allows you to "",find, filter,and grab files from any machine.")
+parser = argparse.ArgumentParser(prog="grabby",description="Grabby is a python tool that allows you to find, filter, and grab files from any machine.")
 def parse_cli():
 	parser.add_argument("-s --search",nargs="*",help="Directories you want to search and grab files from.")
 	parser.add_argument("-t --include",nargs="*",help="Only grab files that have filenames that match these patterns.")
