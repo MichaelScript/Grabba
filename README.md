@@ -1,10 +1,10 @@
-#Grabby
-Grabby is a python tool that allows you to copy files from a machine based on a simple filter system. Grabby takes in a user configuration file that allows you to specify what directories you want to search, what file name patterns to exclude, and what file types you want to grab. It then copies files and directories that meet these filters into a user-specified output directory.
+#Aylak
+Aylak is
 
 ## Installation
-> pip install grabby
+> pip install aylak
 
-##Configuring Grabby
+##Configuring aylak
 Option Name | Type | Default Value | Description
 ------------ | ------------- | ------------ | ------------- 
 **output** | string | *Current Directory* | Where we are copying to 

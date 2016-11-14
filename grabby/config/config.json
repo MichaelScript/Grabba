@@ -1,7 +1,0 @@
-{
-	"output":"output",
-	"search":[""],
-	"include":[".*\\.docx$",".*\\.txt$",".*\\.pdf$"],
-	"exclude":["spotlight","some"],
-    "prompt":false
-}
