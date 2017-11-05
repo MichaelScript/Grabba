@@ -1,10 +1,10 @@
-#Grabby
+# Grabby
 Grabby is a python tool that allows you to copy files from a machine based on a simple filter system. Grabby takes in a user configuration file that allows you to specify what directories you want to search, what file name patterns to exclude, and what file types you want to grab. It then copies files and directories that meet these filters into a user-specified output directory.
 
 ## Installation
 > pip install grabby
 
-##Configuring Grabby
+## Configuring Grabby
 Option Name | Type | Default Value | Description
 ------------ | ------------- | ------------ | ------------- 
 **output** | string | *Current Directory* | Where we are copying to 
@@ -13,7 +13,7 @@ Option Name | Type | Default Value | Description
 **exclude** | list | *None* | Ignoring files that match these regex patterns
 **prompt** | boolean | *False* | Enables/Disables prompting replacing directories
 
-###Example Configuration File
+### Example Configuration File
 ```json
 {
     "output":"/Volumes/usb/copied",
@@ -23,7 +23,7 @@ Option Name | Type | Default Value | Description
     "prompt":false
 }
 ```
-##Command Line Usage
+## Command Line Usage
 You can run Grabby in your terminal with your default configuration by just typing `grabby` or you can reconfigure grabby on the fly by using it's command line options. For example if you wanted to change what directories you are searching you could do the following: `grabby -s /etc /usr/share`  A full list of command line options is given below.
 ```
 usage: grabby [-h] [-s --search [S __SEARCH [S __SEARCH ...]]]
