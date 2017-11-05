@@ -1,6 +1,8 @@
 # Grabby
 Grabby is a python tool that allows you to copy files from a machine based on a simple filter system. Grabby takes in a user configuration file that allows you to specify what directories you want to search, what file name patterns to exclude, and what file types you want to grab. It then copies files and directories that meet these filters into a user-specified output directory.
 
+I have no idea if this works anymore. I wrote it a long time ago but the repo was private, just making it public in case anyone wants to use/fix this up.
+
 ## Installation
 > pip install grabby
 
